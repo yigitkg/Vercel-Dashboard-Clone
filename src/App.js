@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react'
+
+/**
+ * React component that renders a form to input key-value pairs
+ * with the ability to add, remove, and paste multiple pairs at once
+ * @returns {JSX.Element} The rendered component
+ */
 function App() {
+  // State hook to store the key-value pairs
   const [items, setItems] = useState([
     {
       key: '',
@@ -7,6 +14,7 @@ function App() {
     },
   ])
 
+  // Effect hook to ensure there is always at least one pair
   useEffect(() => {
     if (items.length === 0) {
       setItems([
@@ -18,6 +26,11 @@ function App() {
     }
   }, [items])
 
+  /**
+   * Handler function for pasting multiple key-value pairs at once
+   * @param {ClipboardEvent} e - The paste event
+   * @param {number} index - The index of the input field that triggered the paste event
+   */
   const pasteHandle = (e, index) => {
     e.preventDefault()
     const pastedData = e.clipboardData.getData('text')
