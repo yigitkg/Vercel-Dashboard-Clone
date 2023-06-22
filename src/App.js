@@ -28,7 +28,7 @@ function App() {
           if (/([\w]+)=(.+?)/.test(text)) {
             let [key, value] = text.split('=')
             let find = items.find((i) => i.key === key)
-            if (!find) {
+            if (!find || find?.key === items[index].key) {
               return {
                 key,
                 value,
